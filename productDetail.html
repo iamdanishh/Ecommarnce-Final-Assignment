@@ -1,0 +1,234 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="style.css"></link>
+    <link href="http://fonts.cdnfonts.com/css/hioganke" rel="stylesheet">
+    <link href="http://fonts.cdnfonts.com/css/showdriel" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+    <link href='https://fonts.googleapis.com/css?family=Montserrat' rel='stylesheet'>
+    <!-- Bootstrap carousal -->
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
+    <title>Product Detail</title>
+</head>
+<body>
+    <nav id="NavBar001">
+        <div class="navBar">
+            <ul>
+                <li class="logo">
+                    <a href="#"> ShopeLane</a>
+                </li>
+                <li class="navItem" style="padding-left:30px">
+                    <a href="heading1"> Cloting</a>
+                </li>
+                <li class="navItem">
+                    <a href="heading2"> Accessories</a>
+                </li>
+                <a href="#" class=""> <img class="avatar float-right"
+                        src="https://cloudflare-ipfs.com/ipfs/Qmd3W5DuhgHirLHGVixi6V76LhCkZUz6pnFt5AJBiyvHye/avatar/5.jpg"
+                        alt="avatar"></a>
+
+                <li id="cart" class="float-right navItem fa fa-shopping-cart">
+                    <span class="cartCount" id="cartcount"> 0</span>
+                </li>
+            </ul>
+        </div>
+    </nav>
+    <main>
+        <div id="main">
+
+        </div>
+        <p id="demo"></p>
+    </main>
+    <footer>
+
+        <div class="footer">
+           
+            
+               <div class="footer-item">
+            
+                    <p><b>Online Store</b></p>
+                    <p>Men Clothin</p>
+                    <p>Woman Clothing</p>
+                    <p>Men Accessories</p>
+                    <p>Woman Accessories</p>
+
+                    
+                </div>
+                <div class="footer-item">
+                
+                    <p><b>Helpful Link</b></p>
+                    <p>Home</p>
+                    <p>About</p>
+                    <p>Contact</p>
+                    
+                </div>
+
+                <div class="footer-item">
+                
+                        <p><b>Partners</b></p>
+                        <p>zara</p>
+                        <p>Pantaloont</p>
+                        <p>Levi's</p>
+                        <p>UCB</p>
+                        </p>+ Many More</p>
+                    
+                </div>
+                <div class="footer-item">
+                    <address>
+                        <p>Building 101</p>
+                        <p>Central Avenue</p>
+                        <p>LA - 902722</p>
+                        <p>Building 101</p>
+                        <p>United</p>
+                        </address>
+                </div>
+            </div>
+       
+    </footer>
+</body>
+<script src="data.js"></script>
+<script>
+    // getting data from URL
+    const queryString = window.location.search;
+    const urlParams = new URLSearchParams(queryString);
+    const id = urlParams.get('prodcutID');
+    var productData; []
+    productList.forEach(element => {
+       
+       if(id == element.id){
+        productData = element
+       } 
+    });
+    var section = document.createElement("div");
+section.setAttribute("id","section");
+document.getElementById("main").append(section);
+
+var leftCol = document.createElement("div");
+leftCol.setAttribute("id","leftCol");
+var sec = document.getElementById("section");
+sec.append(leftCol);
+
+var rightCol = document.createElement("div");
+rightCol.setAttribute("id","rightCol");
+sec.append(rightCol);
+
+var imgPreview = document.createElement("img");
+imgPreview.setAttribute("id","imgPreview");
+document.getElementById("leftCol").append(imgPreview);
+imgPreview.setAttribute("src", productData.preview)
+
+var ProDescription = document.createElement("div");
+ProDescription.setAttribute("id","ProDescription");
+document.getElementById("rightCol").append(ProDescription);
+
+var heading1 = document.createElement("h1");
+heading1.setAttribute("id","heading1");
+document.getElementById("ProDescription").append(heading1);
+heading1.innerText = productData.name;
+
+var heading2 = document.createElement("h4");
+heading2.setAttribute("id","heading2");
+document.getElementById("ProDescription").append(heading2);
+heading2.innerText = productData.brand;
+
+var heading3 = document.createElement("h3");
+heading3.setAttribute("id","heading3");
+document.getElementById("ProDescription").append(heading3);
+heading3.innerHTML = "Price: Rs <span id='price'>"+ productData.price+" </span>";
+
+var description = document.createElement("div");
+description.setAttribute("id","description");
+document.getElementById("ProDescription").append(description);
+
+var description1 = document.createElement("h3");
+description1.setAttribute("id","heading3");
+document.getElementById("description").append(description1);
+description1.innerHTML = "Description";
+
+var description3 = document.createElement("p");
+description3.setAttribute("id","description3");
+document.getElementById("description").append(description3);
+description3.innerHTML = productData.description;
+
+var previewBlock = document.createElement("div");
+previewBlock.setAttribute("id","previewBlock");
+document.getElementById("ProDescription").append(previewBlock);
+
+var previewHeading = document.createElement("h3");
+previewHeading.setAttribute("id","previewHeading");
+document.getElementById("previewBlock").append(previewHeading);
+previewHeading.innerHTML = "Product Preview";
+
+var previewImages = document.createElement("div");
+previewImages.setAttribute("id","previewImages");
+document.getElementById("previewBlock").append(previewImages);
+
+// preview image onclick logic
+var count = 0;
+var previousNode = null;
+productData.photos.forEach(element => {
+    const para = element;
+    var imgoptions = document.createElement("img");
+    imgoptions.setAttribute("id", "img-"+count);
+    imgoptions.className ="imgoptions";
+    if(count === 0){
+        imgoptions.className = "active imgoptions";
+    }
+    imgoptions.setAttribute("src", element);
+    document.getElementById("previewImages").append(imgoptions);
+    count++;
+
+    imgoptions.addEventListener('click', function() {
+        document.getElementById("imgPreview").setAttribute("src", para)
+        if(previousNode == null){
+            var temp= document.getElementById("img-0")
+        temp.classList.remove("active");
+        imgoptions.className ="active imgoptions";
+        previousNode = imgoptions
+        }
+        else{
+            previousNode.classList.remove("active");
+            imgoptions.className ="active imgoptions";
+            previousNode = imgoptions
+        }
+        
+      })
+
+});
+
+
+var addcartdiv = document.createElement("div");
+addcartdiv.setAttribute("id","addcartdiv");
+document.getElementById("rightCol").append(addcartdiv);
+
+var btnaddcart = document.createElement("button");
+btnaddcart.setAttribute("id","btnaddcart");
+document.getElementById("addcartdiv").append(btnaddcart);
+btnaddcart.innerText="Add to Cart";
+if(localStorage.getItem(cartItem) == null){
+    var cartItem = [];
+    console.log("if")
+}
+else{
+   var cartItem = [];
+
+    cartItem.push(JSON.parse(localStorage.getItem(cartItem)))
+   
+}
+
+console.log(localStorage.getItem(cartItem));
+document.getElementById("btnaddcart").addEventListener("click", function Addcart(){
+    cartItem.push(productData)
+    localStorage.setItem("cartItem", JSON.stringify(cartItem));
+    console.log("cart added " + JSON.parse(localStorage.getItem(cartItem)))
+    document.getElementById("cartcount").innerHTML = 1;
+    
+})
+// localStorage.removeItem("cartItem"); 
+</script>
+</html>
